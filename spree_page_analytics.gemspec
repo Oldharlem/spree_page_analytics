@@ -3,8 +3,8 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_page_analytics'
   s.version     = '2.0.12.beta'
-  s.summary     = 'TODO: Add gem summary here'
-  s.description = 'TODO: Add (optional) gem description here'
+  s.summary     = 'Spree extension that integrates with analytics providers to get us leverage page performance'
+  s.description = 'Spree extension that integrates with analytics providers to get us leverage page performance'
   s.required_ruby_version = '>= 1.9.3'
   s.author    = 'Kyle Van Wagenen'
   # s.email     = 'you@example.com'
