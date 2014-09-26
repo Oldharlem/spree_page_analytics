@@ -6,7 +6,7 @@ module SpreePageAnalytics
     class Client
       def initialize(service_account_email, key_file, key_secret, profile_id)
         @API_VERSION = 'v3'
-        @CACHED_API_FILE = "analytics-#{API_VERSION}.cache"
+        @CACHED_API_FILE = "analytics-#{@API_VERSION}.cache"
 
         # Update these to match your own apps credentials
         @service_account_email = service_account_email #'389871615598-l0b1if50ukrq871jqe72ih3itq1njjkr@developer.gserviceaccount.com' # Email of service account
@@ -45,7 +45,7 @@ module SpreePageAnalytics
             @analytics = Marshal.load(file)
           end
         else
-          @analytics = client.discovered_api('analytics', API_VERSION)
+          @analytics = @client.discovered_api('analytics', @API_VERSION)
           File.open(@CACHED_API_FILE, 'w') do |file|
             Marshal.dump(@analytics, file)
           end
@@ -63,7 +63,6 @@ module SpreePageAnalytics
         end_date = end_date.strftime("%Y-%m-%d")
         dimensions ||= "ga:landingPagePath,ga:date"
         metrics ||= "ga:sessions,ga:transactions,ga:transactionRevenue,ga:transactionRevenuePerSession"
-        filters ||= ""
         sort ||= "ga:landingPagePath"
 
         # Request as many pages as necessary for complete data set
@@ -82,16 +81,18 @@ module SpreePageAnalytics
       end
 
       def execute_request profile_id, start_date, end_date, dimensions, metrics, filters, sort, start_index
-        @client.execute(:api_method => @analytics.data.ga.get, :parameters => { 
-          'ids' => "ga:" + @profileID, 
+        params = { 
+          'ids' => "ga:" + @profile_id,
           'start-date' => start_date,
           'end-date' => end_date,
           'dimensions' => dimensions,
           'metrics' => metrics,
-          'filters' => filters,
-          'sort' => sort,
           'start-index' => start_index
-        })
+        }
+        params['filters'] = filters if filters
+        params['sort'] = sort if sort
+
+        @client.execute(:api_method => @analytics.data.ga.get, :parameters => params)
       end
     end
   end
