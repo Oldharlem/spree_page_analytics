@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_page_analytics'
-  s.version     = '2.0.12.beta'
+  s.version     = '2.0.12'
   s.summary     = 'Spree extension that integrates with analytics providers to get us leverage page performance'
   s.description = 'Spree extension that integrates with analytics providers to get us leverage page performance'
   s.required_ruby_version = '>= 1.9.3'
@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_core', '2.0.12.beta'
+  s.add_dependency 'spree_core', '~> 2.0'
   s.add_dependency 'google-api-client', '>= 0.6'
 
   s.add_development_dependency 'capybara', '~> 2.1'
