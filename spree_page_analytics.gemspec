@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_core', '~> 2.0.12.beta'
+  s.add_dependency 'spree_core', '2.0.12.beta'
   s.add_dependency 'google-api-client', '>= 0.6'
 
   s.add_development_dependency 'capybara', '~> 2.1'
